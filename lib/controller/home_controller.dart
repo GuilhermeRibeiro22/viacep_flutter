@@ -9,6 +9,6 @@ class HomeController{
     // Instanciar objeto:
     EnderecoModel endereco = EnderecoModel();
     endereco = await EnderecoModel.buscarCep(entradaCep.text);
-    return "CEP: ${endereco.cep}\n Rua: ${endereco.logradouro}";
+    return "CEP: ${endereco.cep}\n Rua: ${endereco.logradouro}\n Bairro: ${endereco.bairro}\n Cidade: ${endereco.localidade}\n Estado: ${endereco.estado}";
   }
 }

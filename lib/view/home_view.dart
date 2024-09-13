@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:masked_text_field/masked_text_field.dart';
 import 'package:viacep_flutter/controller/home_controller.dart';
+import 'package:art_sweetalert/art_sweetalert.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -29,7 +30,8 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
       ),
-      body: SizedBox(
+      body: SingleChildScrollView(
+        child:  SizedBox(
         child: Column(
           children: [
             Padding(
@@ -61,7 +63,12 @@ class _HomeViewState extends State<HomeView> {
                 onPressed: () async{
                     controller.resultado = await controller.buscarCep();
                   setState(() {
-                    print(controller.resultado);
+                     ArtSweetAlert.show(
+                            context: context,
+                            artDialogArgs: ArtDialogArgs(
+                                type: ArtSweetAlertType.success,
+                                title: "CEP econtrado com sucesso!",
+                                text: controller.resultado));
                   });
                 },
                 label: Text('Buscar',
@@ -76,15 +83,10 @@ class _HomeViewState extends State<HomeView> {
                     backgroundColor: Colors.amber[300]
                   ),
               ),
-              SizedBox(height: 40),
-              Text(controller.resultado,
-                style: TextStyle(
-                  fontSize: 20
-                ),
-              )
           ],
          ),
         ),
+      ),
     );
   }
 }
